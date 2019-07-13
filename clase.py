@@ -79,21 +79,41 @@ class Curso:
 
 class Estudiante(Persona,Curso):
 
-    def __init__(self,curso,legajo,nombre,apellido,edad,nombreCursada,horario):
-        self.curso=curso
+    def __init__(self,cursoNombre,legajo,nombre,apellido,edad,nombreCursada,horario,cursoObject,personaObject):
+        self.cursoNombre=cursoNombre
         self.legajo=legajo
+        self.curso=cursoObject
+        self.persona=personaObject
         Persona.__init__(self,nombre,apellido,edad)
         Curso.__init__(self,nombreCursada,horario)
     
 
+    def metodoMistico(self):
+        self.curso.getNombreCursada()
+        
+    def asignomMateria(self,nombreMateria):
+        self.curso.addMatetria(nombreMateria)
+        
+    def veoAsignacionesMateria(self):
+        self.curso.showMateria()
 
 
+
+c1 = Curso("python","10 a 14")
 
 p1 = Persona("Dante","Panella",37)
-e1 = Estudiante("curso python",1234, "Nicolas","Neme",41, "Python inicial", "9 a 13 hs" )
+e1 = Estudiante("curso python",1234, "Nicolas","Neme",41, "Python inicial", "9 a 13 hs",c1,p1 )
 
+print(e1.metodoMistico())
 print (e1.nombre + " esta cursando " + e1.getNombreCursada())
 
+
+
+print ("======================")
+e1.asignomMateria("matematia")
+e1.asignomMateria("algebra")
+e1.asignomMateria("diseño")
+e1.veoAsignacionesMateria()
 
 
 
